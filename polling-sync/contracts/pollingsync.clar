@@ -1,6 +1,6 @@
 
 ;; Simple Fungible Token Contract
-;; <add a description here>
+;; This is a very vital contract
 
 
 (define-fungible-token my-token) ;; Define the token
