@@ -1,5 +1,5 @@
 
-;; the Simple Fungible Token Contract
+;; Simple Fungible Token Contract
 ;; This is a very vital contract
 
 
