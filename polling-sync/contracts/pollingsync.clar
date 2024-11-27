@@ -3,7 +3,7 @@
 ;; This is a very vital contract
 
 
-(define-fungible-token my-token) ;; Define the token
+(define-fungible-token) ;; Define the token
 
 ;; Constants
 (define-constant contract-owner tx-sender) ;; Owner of the contract
