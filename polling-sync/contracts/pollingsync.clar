@@ -1,15 +1,48 @@
 
-;; pollingsync
+;; Simple Fungible Token Contract
 ;; <add a description here>
 
-;; constants
-;;
 
-;; data maps and vars
-;;
+(define-fungible-token my-token) ;; Define the token
 
-;; private functions
-;;
+;; Constants
+(define-constant contract-owner tx-sender) ;; Owner of the contract
 
-;; public functions
-;;
+;; data vars and maps
+(define-data-var total-supply uint u1000000) ;; Total supply of tokens
+
+;; Mint tokens (only contract owner can mint)
+(define-public (mint (amount uint) (recipient principal))
+    (begin
+        ;; Check if the sender is the contract owner
+        (asserts! (is-eq tx-sender contract-owner) (err u1))
+        
+        ;; Mint tokens to the recipient
+        (try! (ft-mint? my-token amount recipient))
+        
+        (ok true)
+    )
+)
+
+;; Transfer tokens
+(define-public (transfer (amount uint) (sender principal) (recipient principal))
+    (begin
+        ;; Check if sender has sufficient balance
+        (asserts! (>= (ft-get-balance my-token sender) amount) (err u2))
+        
+        ;; Perform the transfer
+        (try! (ft-transfer? my-token amount sender recipient))
+        
+        (ok true)
+    )
+)
+
+;; Get token balance
+(define-read-only (get-balance (account principal))
+    (ok (ft-get-balance my-token account))
+)
+
+;; Get total supply
+(define-read-only (get-total-supply)
+    (ok (var-get total-supply))
+)
