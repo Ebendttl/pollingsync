@@ -1,6 +1,6 @@
 
 ;; Simple Fungible Token Contract
-;; <add a description here>
+;; A minimal Clarity smart contract implementing a basic fungible token with core functionality for minting, transferring, and balance checking.
 
 
 (define-fungible-token my-token) ;; Define the token
